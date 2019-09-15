@@ -10,9 +10,8 @@ Start and stop docker daemon with vscode tasks.
 
 Also edit "latexdockerdaemoncmd.sh" and remove the "-it" part. vscode throws an error, "the input device is not a TTY"
 
-Compiling on save is done with https://github.com/James-Yu/LaTeX-Workshop which is a vscode extension. This extension also has other goodies.
-Install with
+Compiling on save is done with the following command. Files exist in my dotfiles repo under ~/bin/scripts/
 ```bash
-code --install-extension James-Yu.latex-workshop
+on_file_change.sh ~/bin/scripts/latex_builder.sh example.tex
 ```
 
