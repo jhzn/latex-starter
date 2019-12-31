@@ -1,17 +1,41 @@
-## Starter for writing latex documents in vscode
----
+## Starter for writing latex documents
 
-This depends on https://github.com/blang/latex-docker
-which supplies a docker environment for compiling latex document.
-This way you don't have to pollute your machine with latex stuff.
-Make sure those scripts are in your $PATH.
+This a starter for generating PDFs from latex documents.
+The compiler is housed in a docker container to avoid poluting the host system as typical latex installations tend to be quite massive.
+And of course the other benefits from using docker :)
 
-Start and stop docker daemon with vscode tasks.
+## Prerequisites
 
-Also edit "latexdockerdaemoncmd.sh" and remove the "-it" part. vscode throws an error, "the input device is not a TTY"
+modd(a program) for filesystem change watching.
 
-Compiling on save is done with the following command. Files exist in my dotfiles repo under ~/bin/scripts/
-```bash
-on_file_change.sh ~/bin/scripts/latex_builder.sh example.tex
+### Installing
+
+```shell
+#With go dev tooling installed
+env GO111MODULE=on go get github.com/cortesi/modd/cmd/modd
 ```
 
+## Usage
+
+Start the docker container in the background:
+
+```shell
+./scripts/startdaemon.sh
+
+#To stop the daemon, run:
+./scripts/stopdaemon.sh
+```
+
+Then in a shell run the following in the same directory as "modd.conf":
+
+```shell
+modd
+```
+
+The filesystem watcher is now running and you should see output from the compiler in the shell and a generated "example.pdf" file.
+Try editing "example.tex" now and see if the file is generated anew.
+
+## Credits
+
+For the latex docker environment goes to
+https://github.com/blang/latex-docker

@@ -1,0 +1,8 @@
+#temp files
+*aux
+*fls
+*out
+*_latexmk
+*log
+
+*.pdf
